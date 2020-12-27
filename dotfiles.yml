@@ -4,27 +4,19 @@
     - role: git
       tags:
         - git
+
     - role: apt
       tags:
         - apt
+
     - role: zsh
       tags:
         - zsh
-    # - role: fzf
-    #   tags:
-    #     - fzf
-    # - role: vim
-    #   tags:
-    #     - vim
-    # - role: tmux
-    #   tags:
-    #     - tmux
+
     - role: asdf
       tags:
         - asdf
+
     - role: golang
       tags:
         - golang
-    - role: redis
-      tags:
-        - redis
