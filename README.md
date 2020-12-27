@@ -1,5 +1,7 @@
 # My dotfiles
 
+    git clone https://github.com/NAzT/dotfiles-1.git .dotfiles
+
 Configure linux workstation using Ansible.
 
 ### Languages
