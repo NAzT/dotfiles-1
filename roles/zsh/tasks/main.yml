@@ -28,8 +28,8 @@
 - name: Remove .zshrc
   command: rm ~/.zshrc
   when: zshrc_stat.stat.exists
-  # args:
-  #   warn: false
+  args:
+    warn: false
 
 - name: Symlink .zshrc
   file:
