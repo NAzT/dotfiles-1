@@ -10,9 +10,9 @@
     - role: zsh
       tags:
         - zsh
-    - role: fzf
-      tags:
-        - fzf
+    # - role: fzf
+    #   tags:
+    #     - fzf
     - role: vim
       tags:
         - vim
