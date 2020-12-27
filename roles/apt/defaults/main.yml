@@ -5,7 +5,7 @@ packages:
   - curl
   - docker-compose
   - docker.io
-  - fzf
+  # - fzf
   - htop
   - jq
   - libbz2-dev
@@ -24,7 +24,7 @@ packages:
   - wget
   - xz-utils
   - zlib1g-dev
-  - ripgrep
+  # - ripgrep
 
   # GUI
   - chromium-browser
