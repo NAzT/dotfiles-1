@@ -7,6 +7,6 @@ alias lj='jobs'
 alias reload!='. ~/.zshrc'
 alias vi="vim"
 alias v="vim"
-alias k="kubectl"
+# alias k="kubectl"
 
 alias timezsh="time zsh -i -c echo"
