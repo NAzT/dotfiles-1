@@ -2,7 +2,7 @@
 - name: Install zsh
   apt: name=zsh state=present
   become: yes
-  become_user: nat_w
+  become_user: root
   become_method: sudo
 
 - name: Check for oh-my-zsh installation
@@ -10,6 +10,8 @@
   register: oh_my_zsh_stat
 
 - name: Install oh-my-zsh
+  become_user: root
+  become_method: sudo
   raw: "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)\""
   when: not oh_my_zsh_stat.stat.exists
 
@@ -28,7 +30,6 @@
   when: zshrc_stat.stat.exists
   # args:
   #   warn: false
-
 
 - name: Symlink .zshrc
   file:
