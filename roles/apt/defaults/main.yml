@@ -27,11 +27,10 @@ packages:
   # - ripgrep
 
   # GUI
-  - chromium-browser
-  - gnome-boxes
-  - gnome-icon-theme
-  - gnome-keyring
-  - i3lock
-
+  # - chromium-browser
+  # - gnome-boxes
+  # - gnome-icon-theme
+  # - gnome-keyring
+  # - i3lock
 remove_packages:
   - gnome-shell-extension-ubuntu-dock
