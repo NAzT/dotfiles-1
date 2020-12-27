@@ -16,9 +16,9 @@
     # - role: vim
     #   tags:
     #     - vim
-    - role: tmux
-      tags:
-        - tmux
+    # - role: tmux
+    #   tags:
+    #     - tmux
     - role: asdf
       tags:
         - asdf
