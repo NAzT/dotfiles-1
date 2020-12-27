@@ -2,6 +2,7 @@
 
     git clone https://github.com/NAzT/dotfiles-1.git .dotfiles
 
+    . ~/.dotfiles/bin/dot-bootstrap
 Configure linux workstation using Ansible.
 
 ### Languages
