@@ -102,6 +102,7 @@ source $ZSH/oh-my-zsh.sh
 
 . $HOME/.asdf/completions/asdf.bash
 
+
 export GOPATH=$HOME/Code/go
 export PATH=$PATH:$(go env GOPATH)/bin
 

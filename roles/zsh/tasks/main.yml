@@ -2,7 +2,7 @@
 - name: Install zsh
   apt: name=zsh state=present
   become: yes
-  become_user: root
+  become_user: nat_w
   become_method: sudo
 
 - name: Check for oh-my-zsh installation
@@ -26,7 +26,7 @@
 - name: Remove .zshrc
   command: rm ~/.zshrc
   when: zshrc_stat.stat.exists
-  warn: False
+
 
 - name: Symlink .zshrc
   file:
