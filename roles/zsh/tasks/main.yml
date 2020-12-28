@@ -26,8 +26,9 @@
   when: zshrc_stat.stat.exists
 
 - name: Remove .zshrc
-  command: rm ~/.zshrc
-  when: zshrc_stat.stat.exists
+  command: rm -f ~/.zshrc
+  # when: zshrc_stat.stat.exists
+  when: zshrc.stat.exists == True
   args:
     warn: false
 
