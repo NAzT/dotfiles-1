@@ -1,6 +1,8 @@
 - name: Check whether swap is already enabled or not
   shell: cat /etc/sysctl.conf
   register: swap_enabled
+  become: yes
+  become_method: sudo
 
 - block:
     - name: create swap file
