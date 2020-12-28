@@ -27,7 +27,7 @@
   command: "${HOME}/.asdf/bin/asdf plugin-add ghq"
 
 - name: Install ghq with asdf
-  command: "${HOME}/.asdf/bin/asdf install ghq"
+  command: "${HOME}/.asdf/bin/asdf install ghq {{item}}"
   loop: "{{ghq_versions}}"
 
 - name: Set global version for ghq to {{ghq_versions[0]}}
