@@ -1,30 +1,29 @@
 package_upgrade: yes
 packages:
-  - ansible
   - build-essential
   - curl
   - docker-compose
   - docker.io
-  # - fzf
-  # - htop
-  # - jq
-  # - libbz2-dev
-  # - libffi-dev
-  # - libffi-dev
-  # - liblzma-dev
-  # - liblzma-dev
-  # - libncurses5-dev
-  # - libreadline-dev
-  # - libsqlite3-dev
-  # - libssl-dev
-  # - llvm
-  # - make
-  # - python-openssl
-  # - tk-dev
-  # - wget
-  # - xz-utils
-  # - zlib1g-dev
+  - htop
+  - jq
+  - libbz2-dev
+  - libffi-dev
+  - libffi-dev
+  - liblzma-dev
+  - liblzma-dev
+  - libncurses5-dev
+  - libreadline-dev
+  - libsqlite3-dev
+  - libssl-dev
+  - llvm
+  - make
+  - python-openssl
+  - wget
+  - xz-utils
+  - zlib1g-dev
   # - ripgrep
+  # - fzf
+  # - tk-dev
 
   # GUI
   # - chromium-browser
