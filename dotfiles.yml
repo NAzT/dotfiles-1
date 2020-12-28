@@ -1,6 +1,7 @@
 - name: Set up local workstation
   hosts: local
   roles:
+    - { role: swap, tags: swap }
     - git
     - apt
     - zsh
