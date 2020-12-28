@@ -16,6 +16,9 @@
   register: golang_add
   failed_when: golang_add == 2
 
+- name: Add golang plugin to asdf
+  command: "${HOME}/.asdf/bin/asdf plugin-add ghq {{ghq_versions[0]}}"
+
 - name: Install golang {{go_version}} with asdf
   command: "${HOME}/.asdf/bin/asdf install golang {{item}}"
   loop: "{{go_versions}}"
