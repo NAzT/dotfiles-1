@@ -1,45 +1,34 @@
-- name: set swap_file variable
-  set_fact:
-    swap_file: /{{ swap_space }}.swap
+- name: Check whether swap is already enabled or not
+  shell: cat /etc/sysctl.conf
+  register: swap_enabled
 
-- name: check if swap file exists
-  stat:
-    path: "{{ swap_file }}"
-  register: swap_file_check
+- block:
+    - name: create swap file
+      command: dd if=/dev/zero of=/swapfile bs=1G count=1
 
-- name: create swap file
-  become: yes
-  command: fallocate -l {{ swap_space }} {{ swap_file }}
-  when: not swap_file_check.stat.exists
+    - name: change permission type
+      file: path=/swapfile mode=600 state=file
 
-- name: Create swap space
-  command: dd if=/dev/zero of=/extraswap bs=1M count=512
-  when: not swap_file_check.stat.exists
+    - name: setup swap
+      command: mkswap /swapfile
 
-- name: set permissions on swap file
-  become: yes
-  file:
-    path: "{{ swap_file }}"
-    mode: 0600
+    - name: create swap
+      command: swapon /swapfile
 
-- name: format swap file
-  become: yes
-  command: mkswap {{ swap_file }}
-  when: not swap_file_check.stat.exists
+    - name: Add to fstab
+      action: lineinfile dest=/etc/fstab regexp="swapfile" line="/swapfile none swap sw 0 0" state=present
 
-- name: add to fstab
-  become: yes
-  lineinfile:
-    dest: /etc/fstab
-    regexp: "{{ swap_file }}"
-    line: "{{ swap_file }} none swap sw 0 0"
+    - name: start swap
+      command: swapon -a
 
-- name: turn on swap
-  become: yes
-  command: swapon -a
+    - name: set swapiness
+      sysctl:
+        name: vm.swappiness
+        value: "10"
 
-- name: set swapiness
-  become: yes
-  sysctl:
-    name: vm.swappiness
-    value: "1"
+    - name: set swapiness
+      sysctl:
+        name: vm.vfs_cache_pressure
+        value: "50"
+
+  when: swap_enabled.stdout.find('swappiness') == -1
