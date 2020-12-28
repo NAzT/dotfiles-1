@@ -1,45 +1,37 @@
-- name: set swap_file variable
-  set_fact:
-    swap_file: /{{ swap_space }}.swap
-
-- name: check if swap file exists
+- name: Check for swap file
   stat:
-    path: "{{ swap_file }}"
-  register: swap_file_check
+    path: /swapfile
+  register: swap
 
-- name: create swap file
-  sudo: yes
-  command: fallocate -l {{ swap_space }} {{ swap_file }}
-  when: not swap_file_check.stat.exists
+- name: Create swap file
+  command: |
+    fallocate -l 1024M /swapfile
+  when: swap.stat.exists == False
 
-- name: Create swap space
-  command: dd if=/dev/zero of=/extraswap bs=1M count=512
-  when: not swap_file_check.stat.exists
-
-- name: set permissions on swap file
-  sudo: yes
+- name: Set swap file permissions
   file:
-    path: "{{ swap_file }}"
-    mode: 0600
+    path: /swapfile
+    state: "file"
+    owner: "root"
+    group: "root"
+    mode: "0600"
+  when: swap.stat.exists == False
 
-- name: format swap file
-  sudo: yes
-  command: mkswap {{ swap_file }}
-  when: not swap_file_check.stat.exists
+- name: Initialize swap file
+  command: mkswap /swapfile
+  when: swap.stat.exists == False
 
-- name: add to fstab
-  sudo: yes
-  lineinfile:
-    dest: /etc/fstab
-    regexp: "{{ swap_file }}"
-    line: "{{ swap_file }} none swap sw 0 0"
+- name: Enable swap file
+  command: swapon /swapfile
+  when: swap.stat.exists == False
 
-- name: turn on swap
-  sudo: yes
-  command: swapon -a
-
-- name: set swapiness
-  sudo: yes
-  sysctl:
-    name: vm.swappiness
-    value: "1"
+- name: Manage swap file in /etc/fstab
+  mount:
+    src: /swapfile
+    name: "none"
+    fstype: "swap"
+    opts: "sw,nofail"
+    dump: "0"
+    passno: "0"
+    state: present
+  when: swap.stat.exists == False
