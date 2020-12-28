@@ -5,4 +5,4 @@
     - apt
     - zsh
     - asdf
-    - golang
+    - { role: golang, tags: golang }
