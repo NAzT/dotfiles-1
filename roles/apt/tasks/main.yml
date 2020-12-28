@@ -7,19 +7,17 @@
 
 - name: Install apt packages
   apt:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     update_cache: yes
   become: yes
   become_user: root
   become_method: sudo
-  with_items: "{{ packages }}"
 
 - name: Remove apt packages
   apt:
-    name: "{{ item }}"
+    name: "{{ remove_packages }}"
     update_cache: yes
     state: absent
   become: yes
   become_user: root
   become_method: sudo
-  with_items: "{{ remove_packages }}"
