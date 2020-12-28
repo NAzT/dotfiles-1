@@ -10,5 +10,5 @@ swap_file_path: /swapfile
 # xM=M
 # GB=1000*1000*1000
 # G=1024*1024*1024
-swap_file_size: 4G
+swap_file_size: 1G
 swappiness: 1

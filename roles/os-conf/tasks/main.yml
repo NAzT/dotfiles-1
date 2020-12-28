@@ -12,6 +12,7 @@
     - swap.file.check
 
 - name: Create swap file
+  become: true
   command: fallocate -l {{swap_file_size}} {{swap_file}}
   when: not swap_file_check.stat.exists
   tags:
