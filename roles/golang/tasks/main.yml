@@ -16,3 +16,6 @@
 
 - name: Set global version for golang to {{go_versions[0]}}
   command: "${HOME}/.asdf/bin/asdf global golang {{go_versions[0]}}"
+
+- name: Set global version for golang to {{go_versions[0]}}
+  command: "${HOME}/.asdf/bin/asdf reshim"
