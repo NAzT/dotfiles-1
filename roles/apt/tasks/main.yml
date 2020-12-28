@@ -12,7 +12,7 @@
   become: yes
   become_user: root
   become_method: sudo
-  loop: "{{ packages }}"
+  with_items: "{{ packages }}"
 
 - name: Remove apt packages
   apt:
@@ -22,4 +22,4 @@
   become: yes
   become_user: root
   become_method: sudo
-  loop: "{{ remove_packages }}"
+  with_items: "{{ remove_packages }}"

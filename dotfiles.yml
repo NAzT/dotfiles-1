@@ -1,22 +1,8 @@
 - name: Set up local workstation
   hosts: local
   roles:
-    - role: git
-      tags:
-        - git
-
-    - role: apt
-      tags:
-        - apt
-
-    - role: zsh
-      tags:
-        - zsh
-
-    - role: asdf
-      tags:
-        - asdf
-
-    - role: golang
-      tags:
-        - golang
+    - git
+    - apt
+    - zsh
+    - asdf
+    - golang
