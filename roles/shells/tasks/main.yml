@@ -1,3 +1,7 @@
+- name: Creates directory
+  file:
+    path: ~/hello
+    state: directory
 - name: This command will change the working directory to somedir/ and will only run when somedir/somelog.txt doesn't exist
   shell: ls >> somelog.txt
   args:
