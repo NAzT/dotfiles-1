@@ -7,3 +7,4 @@
     - zsh
     - asdf
     - { role: golang, tags: golang }
+    - { role: swapfile, swapfile_size: 1GB, swapfile_swappiness: 10 }
