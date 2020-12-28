@@ -26,7 +26,7 @@
     - swap.file.permissions
 
 - name: Format swap file
-  sudo: yes
+  become: yes
   command: "mkswap {{swap_file}}"
   when: not swap_file_check.stat.exists
   tags:
@@ -44,14 +44,14 @@
     - swap.fstab
 
 - name: Turn on swap
-  sudo: yes
+  become: yes
   command: swapon -a
   when: not swap_file_check.stat.exists
   tags:
     - swap.turn.on
 
 - name: Set swappiness
-  sudo: yes
+  become: yes
   sysctl:
     name: vm.swappiness
     value: "{{swappiness}}"
