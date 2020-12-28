@@ -15,12 +15,13 @@ packages:
   - libreadline-dev
   - libsqlite3-dev
   - libssl-dev
-  - llvm
+  # - llvm
   - make
   - python-openssl
   - wget
   - xz-utils
   - zlib1g-dev
+  - unzip
   # - ripgrep
   # - fzf
   # - tk-dev
