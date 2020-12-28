@@ -27,8 +27,7 @@
 
 - name: Remove .zshrc
   command: rm -f ~/.zshrc
-  # when: zshrc_stat.stat.exists
-  when: zshrc.stat.exists == True
+  when: zshrc_stat.stat.exists
   args:
     warn: false
 
