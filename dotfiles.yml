@@ -6,5 +6,6 @@
     - apt
     - zsh
     - asdf
+    - shells
     # - { role: golang, tags: golang }
 #    - { role: swapfile, swapfile_size: 1GB, swapfile_swappiness: 10 }
