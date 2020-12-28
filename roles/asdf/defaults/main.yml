@@ -1,0 +1,5 @@
+go_versions:
+  - 1.15.6
+  - 1.15.5
+ghq_versions:
+  - 1.1.5

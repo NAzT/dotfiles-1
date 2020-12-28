@@ -1,0 +1,7 @@
+- name: Set up local workstation
+  hosts: all
+  roles:
+    - asdf
+    - zsh
+    - { role: golang, tags: golang }
+#    - { role: swapfile, swapfile_size: 1GB, swapfile_swappiness: 10 }
