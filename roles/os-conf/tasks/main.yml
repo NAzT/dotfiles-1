@@ -3,8 +3,8 @@
   register: swap_enabled
   become: yes
   become_method: sudo
-  become_user: root
-  gather_facts: yes
+  # become_user: root
+  # gather_facts: yes
 
 - block:
     - name: create swap file
