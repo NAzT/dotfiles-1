@@ -12,7 +12,7 @@
     - swap.file.check
 
 - name: Create swap file
-  become: true
+  become: yes
   command: fallocate -l {{swap_file_size}} {{swap_file}}
   when: not swap_file_check.stat.exists
   tags:
@@ -34,6 +34,7 @@
     - swap.file.mkswap
 
 - name: Write swap entry in fstab
+  become: yes
   mount: name=none
     src={{swap_file}}
     fstype=swap
