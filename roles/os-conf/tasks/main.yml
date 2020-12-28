@@ -19,6 +19,7 @@
     - swap.file.create
 
 - name: Change swap file permissions
+  become: yes
   file: path="{{swap_file}}"
     owner=root
     group=root
