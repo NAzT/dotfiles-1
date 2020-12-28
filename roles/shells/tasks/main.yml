@@ -6,6 +6,6 @@
 - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
   shell: |
     ls
-    la
+    ls -la
   # args:
   # executable: /usr/bin/expect
