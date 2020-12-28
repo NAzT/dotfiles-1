@@ -1,38 +1,59 @@
-- name: Check whether swap is already enabled or not
-  shell: cat /etc/sysctl.conf
-  register: swap_enabled
-  become: yes
-  become_method: sudo
-  # become_user: root
-  # gather_facts: yes
+- name: Set swap_file variable
+  set_fact:
+    swap_file: "{{swap_file_path}}"
+  tags:
+    - swap.set.file.path
 
-- block:
-    - name: create swap file
-      command: dd if=/dev/zero of=/swapfile bs=1G count=1
+- name: Check if swap file exists
+  stat:
+    path: "{{swap_file}}"
+  register: swap_file_check
+  tags:
+    - swap.file.check
 
-    - name: change permission type
-      file: path=/swapfile mode=600 state=file
+- name: Create swap file
+  command: fallocate -l {{swap_file_size}} {{swap_file}}
+  when: not swap_file_check.stat.exists
+  tags:
+    - swap.file.create
 
-    - name: setup swap
-      command: mkswap /swapfile
+- name: Change swap file permissions
+  file: path="{{swap_file}}"
+    owner=root
+    group=root
+    mode=0600
+  tags:
+    - swap.file.permissions
 
-    - name: create swap
-      command: swapon /swapfile
+- name: Format swap file
+  sudo: yes
+  command: "mkswap {{swap_file}}"
+  when: not swap_file_check.stat.exists
+  tags:
+    - swap.file.mkswap
 
-    - name: Add to fstab
-      action: lineinfile dest=/etc/fstab regexp="swapfile" line="/swapfile none swap sw 0 0" state=present
+- name: Write swap entry in fstab
+  mount: name=none
+    src={{swap_file}}
+    fstype=swap
+    opts=sw
+    passno=0
+    dump=0
+    state=present
+  tags:
+    - swap.fstab
 
-    - name: start swap
-      command: swapon -a
+- name: Turn on swap
+  sudo: yes
+  command: swapon -a
+  when: not swap_file_check.stat.exists
+  tags:
+    - swap.turn.on
 
-    - name: set swapiness
-      sysctl:
-        name: vm.swappiness
-        value: "10"
-
-    - name: set swapiness
-      sysctl:
-        name: vm.vfs_cache_pressure
-        value: "50"
-
-  when: swap_enabled.stdout.find('swappiness') == -1
+- name: Set swappiness
+  sudo: yes
+  sysctl:
+    name: vm.swappiness
+    value: "{{swappiness}}"
+  tags:
+    - swap.set.swappiness
