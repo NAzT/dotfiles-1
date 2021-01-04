@@ -1,7 +1,7 @@
-- name: Creates directory
-  file:
-    path: ~/hello
-    state: directory
+# - name: Creates directory
+#   file:
+#     path: ~/hello
+#     state: directory
 
 # - name: Deploy Docker daemon.json.
 #   become: yes
@@ -22,9 +22,9 @@
 #     ['hello1','hello2','hello3','sub_folder/hello4']
 - name: Run shell scripts
   shell: |
-    mkdir $HOME/docker
-    ls
-    ls -la
+    # mkdir $HOME/docker
+    # ls
+    # ls -la
     sudo usermod -aG docker $(whoami)
     sudo systemctl daemon-reload
 
@@ -32,6 +32,8 @@
     # sudo mv /var/lib/docker/ /path/to/new/docker/
     # sudo ln -s /path/to/new/docker/ /var/lib/docker
     # sudo systemctl start docker
+
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # args:
 # executable: /usr/bin/expect

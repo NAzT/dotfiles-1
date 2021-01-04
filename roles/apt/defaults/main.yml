@@ -6,21 +6,20 @@ packages:
   - docker.io
   - htop
   - jq
-  - libbz2-dev
-  - libffi-dev
-  - libffi-dev
-  - liblzma-dev
-  - libncurses5-dev
-  - libreadline-dev
-  - libsqlite3-dev
-  - libssl-dev
-  # - llvm
-  - make
-  - python-openssl
-  - wget
-  - xz-utils
-  - zlib1g-dev
+  # - libbz2-dev
+  # - libffi-dev
+  # - liblzma-dev
+  # - libncurses5-dev
+  # - libreadline-dev
+  # - libsqlite3-dev
+  # - libssl-dev
+  # - make
+  # - python-openssl
+  # - wget
+  # - xz-utils
+  # - zlib1g-dev
   - unzip
+  # - llvm
   # - ripgrep
   # - fzf
   # - tk-dev
