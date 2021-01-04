@@ -17,7 +17,6 @@
   when: not swap_file_check.stat.exists
   tags:
     - swap.file.create
-
 - name: Change swap file permissions
   become: yes
   file: path="{{swap_file}}"
@@ -60,3 +59,24 @@
     value: "{{swappiness}}"
   tags:
     - swap.set.swappiness
+# http://richard.to/programming/formatting-mounting-persistent-disks-on-gce-with-ansible.html
+# - name: Check if disk exists
+#   shell: "file -sL /dev/disk/by-id/google-"
+#   register: disk_exists
+# - name: Format disk
+#   shell: "mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/disk/by-id/google-"
+#   when: "'UUID=' not in disk_exists.stdout"
+# - name: Create mount directory
+#   file:
+#     dest: "/mnt/disks/"
+#     state: directory
+#     owner: root
+#     group: root
+#     mode: 0755
+# - name: Mount drive
+#   mount:
+#     path: "/mnt/disks/"
+#     src: "/dev/disk/by-id/google-"
+#     fstype: ext4
+#     opts: discard,defaults
+#     state: mounted
