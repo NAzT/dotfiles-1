@@ -7,9 +7,11 @@
 #   args:
 #     chdir: somedir/
 #     creates: somelog.txt
-# - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
-#   shell: |
-#     ls
-#     ls -la
+- name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+  shell: |
+    ls
+    ls -la
+    sudo usermod -aG docker $(whoami)
+
 # args:
 # executable: /usr/bin/expect
