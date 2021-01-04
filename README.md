@@ -12,4 +12,6 @@
 
 Configure linux workstation using Ansible.
 
-### Languages
+### Version
+
+ubuntu 18.04
