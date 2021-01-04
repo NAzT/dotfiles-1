@@ -2,14 +2,14 @@
   file:
     path: ~/hello
     state: directory
-- name: This command will change the working directory to somedir/ and will only run when somedir/somelog.txt doesn't exist
-  shell: ls >> somelog.txt
-  args:
-    chdir: somedir/
-    creates: somelog.txt
-- name: Run expect to wait for a successful PXE boot via out-of-band CIMC
-  shell: |
-    ls
-    ls -la
-  # args:
-  # executable: /usr/bin/expect
+# - name: This command will change the working directory to somedir/ and will only run when somedir/somelog.txt doesn't exist
+#   shell: ls >> somelog.txt
+#   args:
+#     chdir: somedir/
+#     creates: somelog.txt
+# - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+#   shell: |
+#     ls
+#     ls -la
+# args:
+# executable: /usr/bin/expect
