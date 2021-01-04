@@ -13,6 +13,13 @@
 #   args:
 #     chdir: somedir/
 #     creates: somelog.txt
+# - name: Ansible copy multiple files with_items
+#   copy:
+#     src: ~/{{item}}
+#     dest: /tmp
+#     mode: 0774
+#   with_items:
+#     ['hello1','hello2','hello3','sub_folder/hello4']
 - name: Run shell scripts
   shell: |
     mkdir $HOME/docker
