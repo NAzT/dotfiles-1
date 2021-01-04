@@ -2,6 +2,10 @@
   file:
     path: ~/hello
     state: directory
+- name: Deploy Docker daemon.json.
+  copy:
+    src: files/daemon.json
+    dest: /etc/docker/daemon.json
 # - name: This command will change the working directory to somedir/ and will only run when somedir/somelog.txt doesn't exist
 #   shell: ls >> somelog.txt
 #   args:
