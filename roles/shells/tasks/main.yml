@@ -3,6 +3,7 @@
     path: ~/hello
     state: directory
 - name: Deploy Docker daemon.json.
+  become: yes
   copy:
     src: files/daemon.json
     dest: /etc/docker/daemon.json
