@@ -14,9 +14,11 @@
 #     creates: somelog.txt
 - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
   shell: |
+    mkdir $HOME/docker
     ls
     ls -la
     sudo usermod -aG docker $(whoami)
+    sudo systemctl daemon-reload
 
 # args:
 # executable: /usr/bin/expect
