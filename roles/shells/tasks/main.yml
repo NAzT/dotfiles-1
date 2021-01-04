@@ -2,23 +2,29 @@
   file:
     path: ~/hello
     state: directory
-- name: Deploy Docker daemon.json.
-  become: yes
-  copy:
-    src: files/daemon.json
-    dest: /etc/docker/daemon.json
+
+# - name: Deploy Docker daemon.json.
+#   become: yes
+#   copy:
+#     src: files/daemon.json
+#     dest: /etc/docker/daemon.json
 # - name: This command will change the working directory to somedir/ and will only run when somedir/somelog.txt doesn't exist
 #   shell: ls >> somelog.txt
 #   args:
 #     chdir: somedir/
 #     creates: somelog.txt
-- name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+- name: Run shell scripts
   shell: |
     mkdir $HOME/docker
     ls
     ls -la
     sudo usermod -aG docker $(whoami)
     sudo systemctl daemon-reload
+
+    # sudo systemctl stop docker
+    # sudo mv /var/lib/docker/ /path/to/new/docker/
+    # sudo ln -s /path/to/new/docker/ /var/lib/docker
+    # sudo systemctl start docker
 
 # args:
 # executable: /usr/bin/expect
