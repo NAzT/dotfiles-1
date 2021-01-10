@@ -25,8 +25,8 @@
     # mkdir $HOME/docker
     # ls
     # ls -la
-    sudo usermod -aG docker $(whoami)
     sudo systemctl daemon-reload
+
 
     sudo rm /etc/localtime
     sudo ln -s /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
@@ -37,6 +37,8 @@
     # sudo systemctl start docker
 
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+    # sudo usermod -aG docker $(whoami)
 
 # args:
 # executable: /usr/bin/expect
